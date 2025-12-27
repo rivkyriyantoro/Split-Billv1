@@ -95,16 +95,16 @@ export default function Home() {
   return (
     <div className="min-h-screen font-sans p-4 md:p-8 flex flex-col items-center text-primary-c">
       <div className="w-full max-w-xl glass rounded-2xl p-6 md:p-8 space-y-8 relative overflow-hidden transition-all duration-300">
-        {/* Decorative Glow (Opacity changes based on theme) */}
-        <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-opacity duration-300 ${isDarkMode ? "opacity-70" : "opacity-40"}`}></div>
+        {/* Decorative Line (Monochrome) */}
+        <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 transition-opacity duration-300 ${isDarkMode ? "opacity-50" : "opacity-30"}`}></div>
 
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg backdrop-blur-sm transition-colors ${isDarkMode ? "bg-white/10" : "bg-purple-100/50"}`}>
-              <Receipt className={`w-6 h-6 ${isDarkMode ? "text-purple-300" : "text-purple-600"}`} />
+            <div className={`p-2 rounded-lg backdrop-blur-sm transition-colors ${isDarkMode ? "bg-white/10" : "bg-gray-200/50"}`}>
+              <Receipt className={`w-6 h-6 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`} />
             </div>
-            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-600 to-gray-800">
               Split Bill
             </h1>
           </div>
@@ -113,7 +113,7 @@ export default function Home() {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-full transition-colors ${isDarkMode ? "bg-white/10 text-yellow-300 hover:bg-white/20" : "bg-purple-100 text-purple-600 hover:bg-purple-200"
+              className={`p-2 rounded-full transition-colors ${isDarkMode ? "bg-white/10 text-gray-300 hover:bg-white/20" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
               title="Toggle Theme"
             >
@@ -161,7 +161,7 @@ export default function Home() {
                 </div>
                 <button
                   onClick={() => removeItem(item.id)}
-                  className="p-2 text-red-400 hover:text-red-500 hover:bg-red-400/10 rounded-lg transition-colors"
+                  className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-200 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-white/10 rounded-lg transition-colors"
                 >
                   <Trash2 size={18} />
                 </button>
@@ -172,7 +172,7 @@ export default function Home() {
               onClick={addItem}
               className={`w-full py-3 mt-2 border border-dashed rounded-lg transition-all text-sm flex justify-center items-center gap-2 ${isDarkMode
                 ? "border-white/20 text-white/50 hover:text-white hover:border-white/40 hover:bg-white/5"
-                : "border-black/10 text-black/40 hover:text-black hover:border-black/20 hover:bg-black/5"
+                : "border-gray-300 text-gray-500 hover:text-gray-800 hover:border-gray-400 hover:bg-gray-100"
                 }`}
             >
               <Plus size={16} /> Tambah Baris
@@ -186,9 +186,9 @@ export default function Home() {
               <input
                 type="number"
                 placeholder="0"
-                className={`w-full rounded-xl px-4 py-3 pl-12 text-xl font-bold focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all shadow-inner border ${isDarkMode
+                className={`w-full rounded-xl px-4 py-3 pl-12 text-xl font-bold focus:outline-none focus:ring-2 focus:ring-gray-500/50 transition-all shadow-inner border ${isDarkMode
                   ? "bg-black/30 border-white/10 text-white"
-                  : "bg-white/60 border-black/5 text-gray-800"
+                  : "bg-white/60 border-gray-300 text-gray-800"
                   }`}
                 value={totalPaid || ""}
                 onChange={(e) => setTotalPaid(parseFloat(e.target.value) || 0)}
@@ -198,7 +198,7 @@ export default function Home() {
 
           <button
             onClick={calculateSplit}
-            className="w-full mt-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-purple-500/20 transform transition-all active:scale-[0.98]"
+            className="w-full mt-8 bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800 text-white font-bold py-4 rounded-xl shadow-lg shadow-gray-900/20 transform transition-all active:scale-[0.98]"
           >
             Hitung Pembagian
           </button>
@@ -229,7 +229,7 @@ export default function Home() {
                       <td className="py-3 px-3 font-medium text-primary-c">{item.name || "Item"}</td>
                       <td className="py-3 px-3 text-right text-secondary-c">{formatRupiah(item.originalPrice).replace("Rp", "")}</td>
                       <td className="py-3 px-3 text-center text-xs text-muted-c">{item.percentage.toFixed(0)}%</td>
-                      <td className="py-3 px-3 text-right font-bold text-purple-500">{formatRupiah(item.finalPrice)}</td>
+                      <td className="py-3 px-3 text-right font-bold text-gray-700 dark:text-gray-300">{formatRupiah(item.finalPrice)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -249,12 +249,12 @@ export default function Home() {
 
               <div className="space-y-1 text-right">
                 <div className="text-xs text-muted-c uppercase tracking-widest">Total Bayar</div>
-                <div className="font-bold font-mono text-xl text-green-500">{formatRupiah(totalPaid > 0 ? totalPaid : subtotal)}</div>
+                <div className="font-bold font-mono text-xl text-gray-800 dark:text-gray-200">{formatRupiah(totalPaid > 0 ? totalPaid : subtotal)}</div>
               </div>
             </div>
 
             {totalPaid > 0 && Math.abs(diff) > 1 && (
-              <div className={`mt-3 text-center text-xs py-1 px-3 rounded-full inline-block w-full border ${isDiscount ? "bg-green-500/10 border-green-500/20 text-green-600" : "bg-red-500/10 border-red-500/20 text-red-500"}`}>
+              <div className={`mt-3 text-center text-xs py-1 px-3 rounded-full inline-block w-full border ${isDiscount ? "bg-gray-200 border-gray-400 text-gray-700" : "bg-gray-300 border-gray-500 text-gray-800"}`}>
                 {isDiscount ? "Diskon Hemat" : "Biaya Tambahan"} sebesar <b>{formatRupiah(Math.abs(diff))}</b> ({diffPercentage.toFixed(1)}%)
               </div>
             )}
