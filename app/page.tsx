@@ -104,7 +104,10 @@ export default function Home() {
             <div className={`p-2 rounded-lg backdrop-blur-sm transition-colors ${isDarkMode ? "bg-white/10" : "bg-gray-200/50"}`}>
               <Receipt className={`w-6 h-6 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`} />
             </div>
-            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-600 to-gray-800">
+            <h1 className={`text-2xl font-bold transition-colors ${isDarkMode
+                ? "text-white"
+                : "bg-clip-text text-transparent bg-gradient-to-r from-gray-600 to-gray-800"
+              }`}>
               Split Bill
             </h1>
           </div>
@@ -113,11 +116,13 @@ export default function Home() {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-full transition-colors ${isDarkMode ? "bg-white/10 text-gray-300 hover:bg-white/20" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              className={`p-2.5 rounded-full transition-all duration-300 border-2 ${isDarkMode
+                ? "bg-white/20 border-white/30 text-yellow-300 hover:bg-white/30 hover:border-white/40 hover:scale-110"
+                : "bg-gray-800/80 border-gray-700 text-yellow-400 hover:bg-gray-900 hover:border-gray-600 hover:scale-110"
                 }`}
-              title="Toggle Theme"
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
 
             {/* Reset Action */}
@@ -136,7 +141,8 @@ export default function Home() {
         <div className={`${calculatedItems.length > 0 ? "hidden md:block opacity-50 hover:opacity-100 transition-opacity" : ""}`}>
           <div className="space-y-4">
             <div className="flex justify-between items-end mb-2">
-              <label className="text-sm font-medium text-secondary-c">Daftar Item</label>
+              <label className={`text-sm font-medium ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                }`}>Daftar Item</label>
               <span className="text-xs text-muted-c">{items.length} Item</span>
             </div>
 
@@ -180,7 +186,8 @@ export default function Home() {
           </div>
 
           <div className={`mt-8 pt-6 border-t ${isDarkMode ? "border-white/10" : "border-black/5"}`}>
-            <label className="block text-sm font-medium text-secondary-c mb-3">Total Pembayaran (Final)</label>
+            <label className={`block text-sm font-medium mb-3 ${isDarkMode ? "text-gray-300" : "text-gray-600"
+              }`}>Total Pembayaran (Final)</label>
             <div className="relative">
               <span className="absolute left-4 top-3.5 text-muted-c font-medium">Rp</span>
               <input
@@ -274,7 +281,10 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <div className="mt-8 text-center text-xs text-muted-c opacity-60 hover:opacity-100 transition-opacity">
+      <div className={`mt-8 text-center text-xs transition-opacity ${isDarkMode
+          ? "text-gray-400 opacity-70 hover:opacity-100"
+          : "text-gray-500 opacity-60 hover:opacity-100"
+        }`}>
         <a href="https://portoky.framer.website/" target="_blank" rel="noopener noreferrer" className="hover:underline">
           Copyright siripky @2025
         </a>
